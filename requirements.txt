@@ -1,0 +1,6 @@
+dash
+pydantic
+pandas
+dash
+dash-bootstrap-components[pandas]
+funcy
