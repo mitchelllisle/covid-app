@@ -256,6 +256,7 @@ def make_time_series_chart(_: str, state: str):
 )
 def make_time_series_chart(_: str, state: str):
     df = Aggregations(app.app_config.data.data)
+    df.hosp = df.hosp.apply(lambda x: x if x > 0 else 0)
     time_series = df.time_series_overall(state)
     fig = make_subplots(specs=[[{"secondary_y": True}]])
     fig.add_trace(
@@ -273,6 +274,15 @@ def make_time_series_chart(_: str, state: str):
             y=time_series.hosp,
             mode='lines',
             name='Hospitalisations'
+        ),
+        secondary_y=True
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=time_series.date,
+            y=time_series.deaths,
+            mode='lines',
+            name='Deaths'
         ),
         secondary_y=True
     )

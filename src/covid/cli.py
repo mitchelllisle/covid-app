@@ -1,14 +1,14 @@
 from covid.app import app, Content, Url
 from covid.overview import overview
-from covid.nav import Nav
 from covid.missing import Page404
 
 from dash.dependencies import Output, Input
 import dash_bootstrap_components as dbc
-from tdash import children, path_name
+from tdash import children, path_name, Nav, NavLink
 
 url = Url()
-nav = Nav()
+nav = Nav(links=[NavLink('Overview', '/'), NavLink('About', '/about')])
+
 content = Content()
 
 missing = Page404()
